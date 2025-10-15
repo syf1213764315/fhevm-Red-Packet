@@ -1,10 +1,25 @@
 # 🚀 Red Packet dApp 部署指南
 
+## ✅ **问题已解决！**
+
+**锁文件问题已修复** - 现在可以成功部署了！
+
+- ✅ 根目录和子目录都配置了 `.npmrc`
+- ✅ `vercel.json` 配置了 `--no-frozen-lockfile`
+- ✅ 锁文件已更新并同步
+
 恭喜！您的 Red Packet dApp 已经成功构建，现在可以部署到生产环境了！
 
 ## 📋 部署选项
 
 ### 1. **Vercel 部署（推荐）** ⭐
+
+#### 🎯 **一键部署脚本（推荐）**
+```bash
+# 在 packages/nextjs 目录
+chmod +x vercel-deploy.sh
+./vercel-deploy.sh
+```
 
 #### 方法 A：通过 Vercel CLI
 ```bash
