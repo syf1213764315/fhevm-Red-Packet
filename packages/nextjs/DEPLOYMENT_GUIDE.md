@@ -36,6 +36,24 @@ NEXT_PUBLIC_ALCHEMY_API_KEY=your_alchemy_key
 NEXT_PUBLIC_INFURA_PROJECT_ID=your_infura_id
 ```
 
+#### 常见问题解决
+
+**问题 1: `ERR_PNPM_OUTDATED_LOCKFILE` 错误**
+```
+解决方案：
+✅ 已配置 vercel.json 使用 --no-frozen-lockfile 标志
+✅ 已创建 .npmrc 文件优化 pnpm 配置
+✅ 或者手动更新锁文件：pnpm install --no-frozen-lockfile
+```
+
+**问题 2: 构建失败**
+```
+解决方案：
+1. 确保在 packages/nextjs 目录部署
+2. 检查环境变量是否正确设置
+3. 验证合约地址配置
+```
+
 ### 2. **Netlify 部署**
 
 #### 方法 A：通过 Netlify CLI
