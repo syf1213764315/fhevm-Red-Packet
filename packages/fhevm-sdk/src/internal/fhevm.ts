@@ -21,7 +21,7 @@ export class FhevmReactError extends Error {
 function throwFhevmError(
   code: string,
   message?: string,
-  cause?: unknown
+  cause?: unknown,
 ): never {
   throw new FhevmReactError(code, message, cause ? { cause } : undefined);
 }
@@ -39,7 +39,7 @@ const fhevmLoadSDK: FhevmLoadSDKType = () => {
 };
 
 const fhevmInitSDK: FhevmInitSDKType = async (
-  options?: FhevmInitSDKOptions
+  options?: FhevmInitSDKOptions,
 ) => {
   if (!isFhevmWindowType(window, console.log)) {
     throw new Error("window.relayerSDK is not available");
@@ -77,7 +77,7 @@ type FhevmRelayerStatusType =
   | "creating";
 
 async function getChainId(
-  providerOrUrl: Eip1193Provider | string
+  providerOrUrl: Eip1193Provider | string,
 ): Promise<number> {
   if (typeof providerOrUrl === "string") {
     const provider = new JsonRpcProvider(providerOrUrl);
@@ -96,7 +96,7 @@ async function getWeb3Client(rpcUrl: string) {
     throwFhevmError(
       "WEB3_CLIENTVERSION_ERROR",
       `The URL ${rpcUrl} is not a Web3 node or is not reachable. Please check the endpoint.`,
-      e
+      e,
     );
   } finally {
     rpc.destroy();
@@ -167,7 +167,7 @@ async function getFHEVMRelayerMetadata(rpcUrl: string) {
     throwFhevmError(
       "FHEVM_RELAYER_METADATA_ERROR",
       `The URL ${rpcUrl} is not a FHEVM Hardhat node or is not reachable. Please check the endpoint.`,
-      e
+      e,
     );
   } finally {
     rpc.destroy();
@@ -180,7 +180,7 @@ type ResolveResult = MockResolveResult | GenericResolveResult;
 
 async function resolve(
   providerOrUrl: Eip1193Provider | string,
-  mockChains?: Record<number, string>
+  mockChains?: Record<number, string>,
 ): Promise<ResolveResult> {
   // Resolve chainId
   const chainId = await getChainId(providerOrUrl);
@@ -239,11 +239,11 @@ export const createFhevmInstance = async (parameters: {
       notify("creating");
 
       //////////////////////////////////////////////////////////////////////////
-      // 
+      //
       // WARNING!!
-      // ALWAY USE DYNAMIC IMPORT TO AVOID INCLUDING THE ENTIRE FHEVM MOCK LIB 
+      // ALWAY USE DYNAMIC IMPORT TO AVOID INCLUDING THE ENTIRE FHEVM MOCK LIB
       // IN THE FINAL PRODUCTION BUNDLE!!
-      // 
+      //
       //////////////////////////////////////////////////////////////////////////
       const fhevmMock = await import("./mock/fhevmMock");
       const mockInstance = await fhevmMock.fhevmMockCreateInstance({
@@ -308,7 +308,7 @@ export const createFhevmInstance = async (parameters: {
   await publicKeyStorageSet(
     aclAddress,
     instance.getPublicKey(),
-    instance.getPublicParams(2048)
+    instance.getPublicParams(2048),
   );
 
   throwIfAborted();

@@ -11,7 +11,7 @@ export type BaseConfig = {
 
 export type ScaffoldConfig = BaseConfig;
 
-const rawAlchemyKey = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY;
+const rawAlchemyKey = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY || "59723a3bf359443abd01f46ffc94ceb7";
 if (!rawAlchemyKey) {
   if (process.env.NODE_ENV === "production") {
     throw new Error("Environment variable NEXT_PUBLIC_ALCHEMY_API_KEY is required in production.");
@@ -34,8 +34,8 @@ const scaffoldConfig = {
   // If you want to use a different RPC for a specific network, you can add it here.
   // The key is the chain ID, and the value is the HTTP RPC URL
   rpcOverrides: {
-    // Example:
-    // [chains.mainnet.id]: "https://mainnet.rpc.buidlguidl.com",
+    // Use the same RPC as Hardhat for Sepolia
+    [chains.sepolia.id]: "https://sepolia.infura.io/v3/59723a3bf359443abd01f46ffc94ceb7",
   },
   // This is ours WalletConnect's default project ID.
   // You can get your own at https://cloud.walletconnect.com
