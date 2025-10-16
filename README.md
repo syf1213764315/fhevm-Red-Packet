@@ -263,3 +263,9 @@ For questions or support:
 ---
 
 **Built with ❤️ for the FHEVM SDK Bounty**
+
+<img width="2544" height="1371" alt="image" src="https://github.com/user-attachments/assets/09d0f0ca-39ec-4959-9d66-3c3845c7d2fb" />
+<img width="1980" height="1329" alt="image" src="https://github.com/user-attachments/assets/ce77982e-ed5b-47e5-a41d-274d69fea09e" />
+<img width="1293" height="1389" alt="image" src="https://github.com/user-attachments/assets/a8667693-e571-41c6-b35d-9bad205b3f70" />
+
+
