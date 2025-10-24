@@ -55,8 +55,7 @@
     "verify:sepolia": "pnpm hardhat:verify:sepolia"
   },
   "dependencies": {
-    "hardhat-deploy": "^0.11.45",
-    "@types/minimatch": "^5.1.2"
+    "hardhat-deploy": "^0.11.45"
   },
   "devDependencies": {
     "@types/node": "^22.7.5",
