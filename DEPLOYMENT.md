@@ -63,29 +63,54 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000)
 
-## Step 5: Deploy to Vercel
+## Step 5: Deploy to Netlify
 
-### Option 1: Deploy from GitHub
+The frontend is a Next.js App Router dApp that **static-exports** on Netlify (`packages/nextjs/out`). Root `netlify.toml` already has the build command, publish directory, and Node 20 settings.
+
+### Option 1: Deploy from GitHub (recommended)
 
 1. Push your code to GitHub
-2. Go to [vercel.com](https://vercel.com)
-3. Click "Import Project"
-4. Select your repository
-5. Set the root directory to `packages/nextjs`
-6. Deploy!
+2. Go to [app.netlify.com](https://app.netlify.com)
+3. Click **Add new site → Import an existing project**
+4. Select this repository
+5. Leave **Base directory** empty (repository root)
+6. Confirm:
+   - **Build command**: `pnpm sdk:build && pnpm next:build`
+   - **Publish directory**: `packages/nextjs/out`
+7. Deploy
 
-### Option 2: Deploy with Vercel CLI
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/syf1213764315/fhevm-Red-Packet)
+
+### Option 2: Deploy with Netlify CLI
 
 ```bash
 cd packages/nextjs
-npx vercel
+chmod +x netlify-deploy.sh
+./netlify-deploy.sh
 ```
 
-Follow the prompts to deploy.
+Or:
+
+```bash
+cd packages/nextjs
+NETLIFY=true pnpm build
+npx netlify-cli deploy --prod --dir=out
+```
 
 ## Environment Variables
 
-No environment variables are required for the frontend. The contract address is hardcoded in the config file.
+No environment variables are required for a basic frontend deploy. The contract address is hardcoded in the config file.
+
+Optional Netlify site environment variables (set them **before** the production build so `NEXT_PUBLIC_*` values are inlined):
+
+```
+NEXT_PUBLIC_ALCHEMY_API_KEY=
+NEXT_PUBLIC_INFURA_PROJECT_ID=
+NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID=
+NEXT_PUBLIC_SITE_URL=https://your-site.netlify.app
+```
+
+Netlify also provides `URL` / `DEPLOY_PRIME_URL` automatically for metadata.
 
 For the smart contract deployment, the private key and RPC URL are configured in `hardhat.config.ts`.
 

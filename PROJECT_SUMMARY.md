@@ -298,7 +298,7 @@ Potential additions:
 
 The project is ready for:
 - ✅ Smart contract deployment to Sepolia
-- ✅ Frontend deployment to Vercel/Netlify
+- ✅ Frontend deployment to Netlify
 - ✅ SDK publication to npm
 - ✅ Documentation hosting
 - ✅ Video recording and upload

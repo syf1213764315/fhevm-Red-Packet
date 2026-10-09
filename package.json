@@ -6,6 +6,7 @@
   "engines": {
     "node": ">=20.0.0"
   },
+  "packageManager": "pnpm@10.33.3",
   "workspaces": {
     "packages": [
       "packages/*"
@@ -45,12 +46,11 @@
     "next:lint": "pnpm --filter ./packages/nextjs lint",
     "next:serve": "pnpm --filter ./packages/nextjs serve",
     "precommit": "lint-staged",
-    "preinstall": "pnpm sdk:build",
+    "postinstall": "pnpm sdk:build",
     "start": "pnpm --filter ./packages/nextjs dev",
     "test": "pnpm hardhat:test",
-    "vercel": "pnpm --filter ./packages/nextjs vercel",
-    "vercel:login": "pnpm --filter ./packages/nextjs vercel:login",
-    "vercel:yolo": "pnpm --filter ./packages/nextjs vercel:yolo",
+    "netlify": "pnpm --filter ./packages/nextjs netlify",
+    "netlify:preview": "pnpm --filter ./packages/nextjs netlify:preview",
     "verify": "pnpm hardhat:verify",
     "verify:sepolia": "pnpm hardhat:verify:sepolia"
   },

@@ -16,9 +16,10 @@ const nextConfig: NextConfig = {
   },
 };
 
-const isIpfs = process.env.NEXT_PUBLIC_IPFS_BUILD === "true";
+const isStaticExport =
+  process.env.NEXT_PUBLIC_IPFS_BUILD === "true" || process.env.NETLIFY === "true";
 
-if (isIpfs) {
+if (isStaticExport) {
   nextConfig.output = "export";
   nextConfig.trailingSlash = true;
   nextConfig.images = {
