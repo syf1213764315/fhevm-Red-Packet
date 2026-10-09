@@ -152,17 +152,9 @@ Update the contract address in `/packages/nextjs/utils/redPacketConfig.ts`.
 
 ### Deploy Frontend (Netlify)
 
-This app is configured as a static Netlify site. Connect the GitHub repo in [Netlify](https://app.netlify.com) and leave the **Base directory** empty so the root `netlify.toml` is used.
+Connect the GitHub repo in [Netlify](https://app.netlify.com) and leave the **Base directory** empty so the root `netlify.toml` is used. Next.js is **15.5.27** (required; older 15.2.x is blocked by Netlify for CVE-2025-55182).
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/syf1213764315/fhevm-Red-Packet)
-
-Or deploy from the CLI:
-
-```bash
-cd packages/nextjs
-NETLIFY=true pnpm build
-npx netlify-cli deploy --prod --dir=out
-```
 
 See [DEPLOYMENT.md](DEPLOYMENT.md) for the full walkthrough.
 

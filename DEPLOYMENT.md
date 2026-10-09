@@ -65,7 +65,9 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ## Step 5: Deploy to Netlify
 
-The frontend is a Next.js App Router dApp that **static-exports** on Netlify (`packages/nextjs/out`). Root `netlify.toml` already has the build command, publish directory, and Node 20 settings.
+The frontend is Next.js **15.5.27** on Netlify’s Next.js runtime (`packages/nextjs/.next` + `@netlify/plugin-nextjs`). Do not use 15.2.x — Netlify blocks those deploys ([CVE-2025-55182](https://ntl.fyi/cve-2025-55182)).
+
+Root `netlify.toml` already has the build command, publish directory, and Node 20 settings.
 
 ### Option 1: Deploy from GitHub (recommended)
 
@@ -75,26 +77,19 @@ The frontend is a Next.js App Router dApp that **static-exports** on Netlify (`p
 4. Select this repository
 5. Leave **Base directory** empty (repository root)
 6. Confirm:
-   - **Build command**: `pnpm sdk:build && pnpm next:build`
-   - **Publish directory**: `packages/nextjs/out`
+   - **Build command**: `pnpm sdk:build && pnpm next:build` (or the UI’s `pnpm --filter site... run build`)
+   - **Publish directory**: `packages/nextjs/.next`
+   - Next.js runtime plugin enabled
 7. Deploy
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/syf1213764315/fhevm-Red-Packet)
 
 ### Option 2: Deploy with Netlify CLI
 
-```bash
-cd packages/nextjs
-chmod +x netlify-deploy.sh
-./netlify-deploy.sh
-```
-
-Or:
+From the repository root:
 
 ```bash
-cd packages/nextjs
-NETLIFY=true pnpm build
-npx netlify-cli deploy --prod --dir=out
+npx netlify-cli deploy --build --prod
 ```
 
 ## Environment Variables

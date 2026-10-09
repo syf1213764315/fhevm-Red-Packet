@@ -1,18 +1,15 @@
-# Netlify site config for this pnpm monorepo.
-# Keep Base directory empty in the Netlify UI (repository root) so pnpm
-# installs from the workspace lockfile. Do not set Base to packages/nextjs.
-#
-# The Next.js app is a client-side dApp, so production builds emit a static
-# site to packages/nextjs/out (see next.config.ts + NETLIFY=true).
+# Netlify config for this pnpm monorepo.
+# Leave Base directory empty in the Netlify UI (repository root).
+# If the UI already set Build command / Publish directory / Next.js plugin,
+# those UI values win — this file matches that Next.js runtime setup.
 
 [build]
   command = "pnpm sdk:build && pnpm next:build"
-  publish = "packages/nextjs/out"
+  publish = "packages/nextjs/.next"
 
 [build.environment]
   NODE_VERSION = "20"
   NPM_FLAGS = "--version"
-  NETLIFY_NEXT_PLUGIN_SKIP = "true"
 
 [dev]
   command = "pnpm start"

@@ -1,22 +1,15 @@
 #!/bin/bash
 set -euo pipefail
 
-echo "🎯 Building Red Packet dApp for Netlify..."
-
-if [ ! -f "package.json" ]; then
-  echo "❌ Run this script from packages/nextjs"
-  exit 1
-fi
+echo "🎯 Deploying Red Packet dApp to Netlify..."
 
 if ! command -v pnpm &> /dev/null; then
   echo "❌ pnpm is not installed"
   exit 1
 fi
 
-echo "🔧 Building static site..."
-NETLIFY=true pnpm build
-
-echo "✅ Build succeeded (output: ./out)"
+ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+cd "$ROOT"
 
 if ! command -v netlify &> /dev/null; then
   echo "📦 Installing Netlify CLI..."
@@ -26,8 +19,8 @@ fi
 echo "🔐 Logging in to Netlify (opens a browser if needed)..."
 netlify login
 
-echo "🚀 Deploying production site..."
-netlify deploy --prod --dir=out
+echo "🚀 Building and deploying production site..."
+netlify deploy --build --prod
 
 echo ""
 echo "🎉 Deploy complete!"

@@ -3,21 +3,16 @@ set -euo pipefail
 
 echo "🚀 Deploying Red Packet dApp to Netlify..."
 
-if [ ! -f "package.json" ]; then
-  echo "❌ Run this script from packages/nextjs"
-  exit 1
-fi
+ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+cd "$ROOT"
 
 if ! command -v netlify &> /dev/null; then
   echo "📦 Installing Netlify CLI..."
   npm install -g netlify-cli
 fi
 
-echo "🔧 Building static site..."
-NETLIFY=true pnpm build
-
-echo "🌐 Deploying production site from ./out ..."
-netlify deploy --prod --dir=out
+echo "🌐 Building and deploying from the workspace root..."
+netlify deploy --build --prod
 
 echo "✅ Deploy complete."
 echo "📋 Optional Netlify environment variables:"
