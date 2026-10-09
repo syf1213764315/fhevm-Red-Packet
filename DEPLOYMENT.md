@@ -63,29 +63,49 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000)
 
-## Step 5: Deploy to Vercel
+## Step 5: Deploy to Netlify
 
-### Option 1: Deploy from GitHub
+The frontend is Next.js **15.5.27** on Netlify’s Next.js runtime (`packages/nextjs/.next` + `@netlify/plugin-nextjs`). Do not use 15.2.x — Netlify blocks those deploys ([CVE-2025-55182](https://ntl.fyi/cve-2025-55182)).
+
+Root `netlify.toml` already has the build command, publish directory, and Node 20 settings.
+
+### Option 1: Deploy from GitHub (recommended)
 
 1. Push your code to GitHub
-2. Go to [vercel.com](https://vercel.com)
-3. Click "Import Project"
-4. Select your repository
-5. Set the root directory to `packages/nextjs`
-6. Deploy!
+2. Go to [app.netlify.com](https://app.netlify.com)
+3. Click **Add new site → Import an existing project**
+4. Select this repository
+5. Leave **Base directory** empty (repository root)
+6. Confirm:
+   - **Build command**: `pnpm sdk:build && pnpm next:build` (or the UI’s `pnpm --filter site... run build`)
+   - **Publish directory**: `packages/nextjs/.next`
+   - Next.js runtime plugin enabled
+7. Deploy
 
-### Option 2: Deploy with Vercel CLI
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/syf1213764315/fhevm-Red-Packet)
+
+### Option 2: Deploy with Netlify CLI
+
+From the repository root:
 
 ```bash
-cd packages/nextjs
-npx vercel
+npx netlify-cli deploy --build --prod
 ```
-
-Follow the prompts to deploy.
 
 ## Environment Variables
 
-No environment variables are required for the frontend. The contract address is hardcoded in the config file.
+No environment variables are required for a basic frontend deploy. The contract address is hardcoded in the config file.
+
+Optional Netlify site environment variables (set them **before** the production build so `NEXT_PUBLIC_*` values are inlined):
+
+```
+NEXT_PUBLIC_ALCHEMY_API_KEY=
+NEXT_PUBLIC_INFURA_PROJECT_ID=
+NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID=
+NEXT_PUBLIC_SITE_URL=https://your-site.netlify.app
+```
+
+Netlify also provides `URL` / `DEPLOY_PRIME_URL` automatically for metadata.
 
 For the smart contract deployment, the private key and RPC URL are configured in `hardhat.config.ts`.
 

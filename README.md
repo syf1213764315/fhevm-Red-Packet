@@ -150,17 +150,13 @@ pnpm deploy
 
 Update the contract address in `/packages/nextjs/utils/redPacketConfig.ts`.
 
-### Deploy Frontend
+### Deploy Frontend (Netlify)
 
-```bash
-cd packages/nextjs
-pnpm build
-pnpm start
-```
+Connect the GitHub repo in [Netlify](https://app.netlify.com) and leave the **Base directory** empty so the root `netlify.toml` is used. Next.js is **15.5.27** (required; older 15.2.x is blocked by Netlify for CVE-2025-55182).
 
-Or deploy to Vercel:
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/syf1213764315/fhevm-Red-Packet)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
+See [DEPLOYMENT.md](DEPLOYMENT.md) for the full walkthrough.
 
 ## 🧪 Testing
 

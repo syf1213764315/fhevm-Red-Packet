@@ -278,7 +278,7 @@ To complete the submission:
    ```bash
    cd packages/nextjs
    pnpm build
-   # Deploy to Vercel or Netlify
+   # Deploy to Netlify
    ```
 
 3. **Record Video** (10 minutes)

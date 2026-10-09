@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 
-const baseUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+const netlifyUrl = process.env.URL || process.env.DEPLOY_PRIME_URL;
+const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : `http://localhost:${process.env.PORT || 3000}`;
+  : undefined;
+
+const baseUrl =
+  siteUrl || netlifyUrl || vercelUrl || `http://localhost:${process.env.PORT || 3000}`;
 const titleTemplate = "%s | helper 2";
 
 export const getMetadata = ({

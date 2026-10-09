@@ -192,7 +192,7 @@ const { encryptWith } = useFHEEncryption({ instance, ethersSigner, contractAddre
 
 - [ ] **Deployment Links** (To be deployed)
   - [ ] Smart contract deployed to Sepolia
-  - [ ] Frontend deployed (Vercel/Netlify)
+  - [ ] Frontend deployed (Netlify)
   - [ ] Links added to README
 
 ## 📋 Pre-Submission Checklist
@@ -281,7 +281,7 @@ const { encryptWith } = useFHEEncryption({ instance, ethersSigner, contractAddre
 
 3. **Deploy Frontend**
    - Build production version
-   - Deploy to Vercel/Netlify
+   - Deploy to Netlify
    - Test deployed version
    - Add deployment link to README
 

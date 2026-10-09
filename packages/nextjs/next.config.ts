@@ -1,7 +1,10 @@
+import path from "path";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // pnpm workspace: trace files from the repo root, not only packages/nextjs
+  outputFileTracingRoot: path.join(__dirname, "../../"),
   devIndicators: false,
   typescript: {
     ignoreBuildErrors: process.env.NEXT_PUBLIC_IGNORE_BUILD_ERROR === "true",
@@ -16,9 +19,9 @@ const nextConfig: NextConfig = {
   },
 };
 
-const isIpfs = process.env.NEXT_PUBLIC_IPFS_BUILD === "true";
+const isStaticExport = process.env.NEXT_PUBLIC_IPFS_BUILD === "true";
 
-if (isIpfs) {
+if (isStaticExport) {
   nextConfig.output = "export";
   nextConfig.trailingSlash = true;
   nextConfig.images = {

@@ -1,0 +1,29 @@
+# Netlify config for this pnpm monorepo.
+# Leave Base directory empty in the Netlify UI (repository root).
+# If the UI already set Build command / Publish directory / Next.js plugin,
+# those UI values win — this file matches that Next.js runtime setup.
+
+[build]
+  command = "pnpm sdk:build && pnpm next:build"
+  publish = "packages/nextjs/.next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--version"
+
+[dev]
+  command = "pnpm start"
+  targetPort = 3000
+  framework = "#custom"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
